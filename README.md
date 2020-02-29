@@ -4,6 +4,20 @@ Provides a go implementation to monitor the Cardano Jormungandr Rust Node. Used 
 
 May need to set GOOS and GOARCH values if compiling on system not running on (https://gist.github.com/asukakenji/f15ba7e588ac42795f421b48b8aede63)
 
+### Installing / Running
+
+1. Build from source (go build) or download executable in releases
+2. Configure and run bash script included in files folder
+```
+# port to run monitor on
+export GJM_MONITOR_PORT=8000
+# url of jormungandr rest api
+export GJM_BASE_REST_URL=http://127.0.0.1:3101
+# your stake pool id, can be left blank for passive nodes
+export GJM_STAKE_POOL_ID=
+```
+3. Make sure `netstat` is installed as that is used for the server connection metrics
+
 ### Example
 
 ```
