@@ -45,6 +45,8 @@ func (cc ConnectionsCollector) Collect(ch chan<- prometheus.Metric) {
 }
 
 func (cc ConnectionsCollector) getNetstats(ch chan<- prometheus.Metric) {
+	cc.Connections.Reset()
+
 	netstat := "netstat -tn | tail -n +3 | awk \"{ print \\$6 }\" | sort | uniq -c | sort -n"
 	cmd := exec.Command("bash", "-c", netstat)
 	out, err := cmd.CombinedOutput()
