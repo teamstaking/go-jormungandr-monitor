@@ -92,6 +92,10 @@ Build Info will return offline with a value of 0 if the stats rest call fails
 jormungandr_buildInfo{state="Offline",version="Offline"} 0
 ```
 
+### Grafana Example Dashboard
+
+![alt text](files/poolinfo.png)
+
 
 ### REST Calls
 
