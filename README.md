@@ -106,6 +106,7 @@ Swagger Doc: https://raw.githubusercontent.com/input-output-hk/jormungandr/maste
 #### Stake Pool Info
 
 Url: {base_url}/api/v0/stake_pool/{pool_id}
+
 Metrics:
 * jormungandr_pool_live_stake_lovelace
 * jormungandr_reward_stakers_lovelace
@@ -135,6 +136,7 @@ Metrics:
 #### Stake Info
 
 Url: {base_url}/api/v0/stake
+
 Metrics:
 * jormungandr_total_staked_lovelace
 * jormungandr_epoch
@@ -159,6 +161,7 @@ Metrics:
 #### Status
 
 Url: {base_url}/api/v0/node/stats
+
 Metrics:
 * jormungandr_lastBlockHeight
 * jormungandr_uptime
@@ -201,6 +204,7 @@ Metrics:
 #### Network
 
 Url: {base_url}/api/v0/network/stats
+
 Metrics:
   * jormungandr_connections
   
