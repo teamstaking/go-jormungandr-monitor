@@ -96,6 +96,8 @@ func (sc StatsCollector) Collect(ch chan<- prometheus.Metric) {
 	stats, err := restclient.GetStats()
 	if err != nil {
 		logrus.Error(fmt.Sprintf("Error getting stats info: %s", err))
+		sc.BuildInfo.WithLabelValues("Offline", "Offline").Set(0)
+		sc.BuildInfo.Collect(ch)
 		return
 	} else {
 		versionSplit := strings.Split(*stats.Version, " ")
