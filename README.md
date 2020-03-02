@@ -86,7 +86,7 @@ curl http://localhost:8000/metrics
 
 #### Offline Metric Example
 
-Build Info will return offline with a value of 0 if the stats rest call fails
+Build Info will return offline with a value of 0 if the stats rest call fails (can use the 0 in grafana to alert on)
 
 ```
 jormungandr_buildInfo{state="Offline",version="Offline"} 0
