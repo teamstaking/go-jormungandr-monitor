@@ -18,71 +18,80 @@ export GJM_STAKE_POOL_ID=
 ```
 3. Make sure `netstat` is installed as that is used for the server connection metrics
 
-### Example
+### Examples Metrics
+
+curl http://localhost:8000/metrics
+
+    # HELP jormungandr_buildInfo Build info
+    # TYPE jormungandr_buildInfo gauge
+    jormungandr_buildInfo{state="Running",version="0.8.9-46df05c7"} 1
+    # HELP jormungandr_connections Jormungandr connections
+    # TYPE jormungandr_connections gauge
+    jormungandr_connections 908
+    # HELP jormungandr_epoch The current epoch
+    # TYPE jormungandr_epoch gauge
+    jormungandr_epoch 74
+    # HELP jormungandr_lastBlockEpoch Epoch of last block
+    # TYPE jormungandr_lastBlockEpoch gauge
+    jormungandr_lastBlockEpoch 74
+    # HELP jormungandr_lastBlockHeight Last block height from the status endpoint
+    # TYPE jormungandr_lastBlockHeight gauge
+    jormungandr_lastBlockHeight 243982
+    # HELP jormungandr_lastBlockSlot Slot of last block
+    # TYPE jormungandr_lastBlockSlot gauge
+    jormungandr_lastBlockSlot 39662
+    # HELP jormungandr_peerAvailableCnt Peers available
+    # TYPE jormungandr_peerAvailableCnt gauge
+    jormungandr_peerAvailableCnt 3584
+    # HELP jormungandr_peerQuarantinedCnt Peers quarantined
+    # TYPE jormungandr_peerQuarantinedCnt gauge
+    jormungandr_peerQuarantinedCnt 6584
+    # HELP jormungandr_peerTotalCnt Peer total
+    # TYPE jormungandr_peerTotalCnt gauge
+    jormungandr_peerTotalCnt 10255
+    # HELP jormungandr_poolTaxFixed The fixed tax for the pool
+    # TYPE jormungandr_poolTaxFixed gauge
+    jormungandr_poolTaxFixed 0
+    # HELP jormungandr_poolTaxRatio The ratio tax for the pool
+    # TYPE jormungandr_poolTaxRatio gauge
+    jormungandr_poolTaxRatio 0.05
+    # HELP jormungandr_pool_live_stake_lovelace The live stake of pool
+    # TYPE jormungandr_pool_live_stake_lovelace gauge
+    jormungandr_pool_live_stake_lovelace 0
+    # HELP jormungandr_reward_pool_lovelace The reward for the pool
+    # TYPE jormungandr_reward_pool_lovelace gauge
+    jormungandr_reward_pool_lovelace 0
+    # HELP jormungandr_reward_stakers_lovelace The rewards for stakers
+    # TYPE jormungandr_reward_stakers_lovelace gauge
+    jormungandr_reward_stakers_lovelace 0
+    # HELP jormungandr_server_connections The server level connections
+    # TYPE jormungandr_server_connections gauge
+    jormungandr_server_connections{state="CLOSING"} 1
+    jormungandr_server_connections{state="ESTABLISHED"} 589
+    jormungandr_server_connections{state="FIN_WAIT1"} 1
+    jormungandr_server_connections{state="FIN_WAIT2"} 1
+    jormungandr_server_connections{state="LAST_ACK"} 1
+    jormungandr_server_connections{state="SYN_RECV"} 2
+    jormungandr_server_connections{state="SYN_SENT"} 17
+    jormungandr_server_connections{state="TIME_WAIT"} 61
+    # HELP jormungandr_total_staked_lovelace Total staked in the current epoch
+    # TYPE jormungandr_total_staked_lovelace gauge
+    jormungandr_total_staked_lovelace 1.1685566218546152e+16
+    # HELP jormungandr_txRecvCnt Transactions received
+    # TYPE jormungandr_txRecvCnt gauge
+    jormungandr_txRecvCnt 21
+    # HELP jormungandr_uptime Uptime from the status endpoint
+    # TYPE jormungandr_uptime gauge
+    jormungandr_uptime 3398
+
+#### Offline Metric Example
+
+Build Info will return offline with a value of 0 if the stats rest call fails
 
 ```
-# HELP jormungandr_buildInfo Build info
-# TYPE jormungandr_buildInfo gauge
-jormungandr_buildInfo{state="Running",version="0.8.9-46df05c7"} 1
-# HELP jormungandr_connections Jormungandr connections
-# TYPE jormungandr_connections gauge
-jormungandr_connections 908
-# HELP jormungandr_epoch The current epoch
-# TYPE jormungandr_epoch gauge
-jormungandr_epoch 74
-# HELP jormungandr_lastBlockEpoch Epoch of last block
-# TYPE jormungandr_lastBlockEpoch gauge
-jormungandr_lastBlockEpoch 74
-# HELP jormungandr_lastBlockHeight Last block height from the status endpoint
-# TYPE jormungandr_lastBlockHeight gauge
-jormungandr_lastBlockHeight 243982
-# HELP jormungandr_lastBlockSlot Slot of last block
-# TYPE jormungandr_lastBlockSlot gauge
-jormungandr_lastBlockSlot 39662
-# HELP jormungandr_peerAvailableCnt Peers available
-# TYPE jormungandr_peerAvailableCnt gauge
-jormungandr_peerAvailableCnt 3584
-# HELP jormungandr_peerQuarantinedCnt Peers quarantined
-# TYPE jormungandr_peerQuarantinedCnt gauge
-jormungandr_peerQuarantinedCnt 6584
-# HELP jormungandr_peerTotalCnt Peer total
-# TYPE jormungandr_peerTotalCnt gauge
-jormungandr_peerTotalCnt 10255
-# HELP jormungandr_poolTaxFixed The fixed tax for the pool
-# TYPE jormungandr_poolTaxFixed gauge
-jormungandr_poolTaxFixed 0
-# HELP jormungandr_poolTaxRatio The ratio tax for the pool
-# TYPE jormungandr_poolTaxRatio gauge
-jormungandr_poolTaxRatio 0.05
-# HELP jormungandr_pool_live_stake_lovelace The live stake of pool
-# TYPE jormungandr_pool_live_stake_lovelace gauge
-jormungandr_pool_live_stake_lovelace 0
-# HELP jormungandr_reward_pool_lovelace The reward for the pool
-# TYPE jormungandr_reward_pool_lovelace gauge
-jormungandr_reward_pool_lovelace 0
-# HELP jormungandr_reward_stakers_lovelace The rewards for stakers
-# TYPE jormungandr_reward_stakers_lovelace gauge
-jormungandr_reward_stakers_lovelace 0
-# HELP jormungandr_server_connections The server level connections
-# TYPE jormungandr_server_connections gauge
-jormungandr_server_connections{state="CLOSING"} 1
-jormungandr_server_connections{state="ESTABLISHED"} 589
-jormungandr_server_connections{state="FIN_WAIT1"} 1
-jormungandr_server_connections{state="FIN_WAIT2"} 1
-jormungandr_server_connections{state="LAST_ACK"} 1
-jormungandr_server_connections{state="SYN_RECV"} 2
-jormungandr_server_connections{state="SYN_SENT"} 17
-jormungandr_server_connections{state="TIME_WAIT"} 61
-# HELP jormungandr_total_staked_lovelace Total staked in the current epoch
-# TYPE jormungandr_total_staked_lovelace gauge
-jormungandr_total_staked_lovelace 1.1685566218546152e+16
-# HELP jormungandr_txRecvCnt Transactions received
-# TYPE jormungandr_txRecvCnt gauge
-jormungandr_txRecvCnt 21
-# HELP jormungandr_uptime Uptime from the status endpoint
-# TYPE jormungandr_uptime gauge
-jormungandr_uptime 3398
+jormungandr_buildInfo{state="Offline",version="Offline"} 0
 ```
+
 
 ### REST Calls
 
