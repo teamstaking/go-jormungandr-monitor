@@ -1,6 +1,6 @@
 ### Overview
 
-Provides a go implementation to monitor the Cardano Jormungandr Rust Node. Used to drive some of the data at https://teamstaking.com
+Provides a Prometheus metrics go implementation to monitor the Cardano Jormungandr Rust Node. Used to drive some of the data at https://teamstaking.com
 
 May need to set GOOS and GOARCH values if compiling on system not running on (https://gist.github.com/asukakenji/f15ba7e588ac42795f421b48b8aede63)
 
