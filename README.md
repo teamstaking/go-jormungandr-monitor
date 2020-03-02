@@ -99,6 +99,8 @@ jormungandr_buildInfo{state="Offline",version="Offline"} 0
 
 ### REST Calls
 
+This sections describes the REST API used to collect the various metrics
+
 Swagger Doc: https://raw.githubusercontent.com/input-output-hk/jormungandr/master/doc/openapi.yaml
 
 #### Stake Pool Info
