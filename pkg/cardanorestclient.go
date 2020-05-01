@@ -51,13 +51,7 @@ func NewClient() Client {
 }
 
 func (client *Client) GetStake(stakePoolId string) (*StakeDto, error) {
-	baseUrl := os.Getenv("GJM_BASE_REST_URL")
-
-	c := &http.Client{
-		Timeout: 2 * time.Second,
-	}
-
-	resp, err := c.Get(fmt.Sprintf("%s/api/v0/stake_pool/%s", baseUrl, stakePoolId))
+	resp, err := client.httpClient.Get(fmt.Sprintf("%s/api/v0/stake_pool/%s", client.baseUrl, stakePoolId))
 	if err != nil {
 		return nil, err
 	}
