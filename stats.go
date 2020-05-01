@@ -88,7 +88,7 @@ func (sc StatsCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (sc StatsCollector) Collect(ch chan<- prometheus.Metric) {
-	logrus.Info("Collecting stats metrics...")
+	logrus.Debug("Collecting stats metrics...")
 
 	sc.BuildInfo.Reset()
 

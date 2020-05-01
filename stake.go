@@ -59,7 +59,7 @@ func (sc StakeCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (sc StakeCollector) Collect(ch chan<- prometheus.Metric) {
-	logrus.Info("Collecting stake metrics...")
+	logrus.Debug("Collecting stake metrics...")
 	stakePoolId := os.Getenv("GJM_STAKE_POOL_ID")
 
 	if len(stakePoolId) > 0 {

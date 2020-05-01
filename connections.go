@@ -40,7 +40,7 @@ func (sc ConnectionsCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (cc ConnectionsCollector) Collect(ch chan<- prometheus.Metric) {
-	logrus.Info("Collecting connections metrics...")
+	logrus.Debug("Collecting connections metrics...")
 	cc.getNetstats(ch)
 }
 
