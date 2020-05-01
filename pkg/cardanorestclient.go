@@ -31,7 +31,26 @@ type StakeTaxRatioDto struct {
 	Denominator float64 `json:"denominator"`
 }
 
-func GetStake(stakePoolId string) (*StakeDto, error) {
+type Client struct {
+	httpClient http.Client
+	baseUrl    string
+}
+
+func NewClient() Client {
+	baseUrl := os.Getenv("GJM_BASE_REST_URL")
+	httpClient := &http.Client{
+		Timeout: 1 * time.Second,
+	}
+
+	client := Client{
+		httpClient: *httpClient,
+		baseUrl:    baseUrl,
+	}
+
+	return client
+}
+
+func (client *Client) GetStake(stakePoolId string) (*StakeDto, error) {
 	baseUrl := os.Getenv("GJM_BASE_REST_URL")
 
 	c := &http.Client{
@@ -70,14 +89,8 @@ type StatsDto struct {
 	PeerTotal       float64 `json:"peerTotalCnt"`
 }
 
-func GetStats() (*StatsDto, error) {
-	baseUrl := os.Getenv("GJM_BASE_REST_URL")
-
-	c := &http.Client{
-		Timeout: 2 * time.Second,
-	}
-
-	resp, err := c.Get(fmt.Sprintf("%s/api/v0/node/stats", baseUrl))
+func (client *Client) GetStats() (*StatsDto, error) {
+	resp, err := client.httpClient.Get(fmt.Sprintf("%s/api/v0/node/stats", client.baseUrl))
 	if err != nil {
 		return nil, err
 	}
@@ -106,14 +119,8 @@ type StakeInfoStakeDto struct {
 	Pools [][]interface{} `json:"pools"`
 }
 
-func GetStakeInfo() (*StakeInfoDto, error) {
-	baseUrl := os.Getenv("GJM_BASE_REST_URL")
-
-	c := &http.Client{
-		Timeout: 2 * time.Second,
-	}
-
-	resp, err := c.Get(fmt.Sprintf("%s/api/v0/stake", baseUrl))
+func (client *Client) GetStakeInfo() (*StakeInfoDto, error) {
+	resp, err := client.httpClient.Get(fmt.Sprintf("%s/api/v0/stake", client.baseUrl))
 	if err != nil {
 		return nil, err
 	}
@@ -137,14 +144,8 @@ type ConnectionsDto struct {
 	NodeId *string `json:"nodeId"`
 }
 
-func GetConnections() ([]ConnectionsDto, error) {
-	baseUrl := os.Getenv("GJM_BASE_REST_URL")
-
-	c := &http.Client{
-		Timeout: 2 * time.Second,
-	}
-
-	resp, err := c.Get(fmt.Sprintf("%s/api/v0/network/stats", baseUrl))
+func (client *Client) GetConnections() ([]ConnectionsDto, error) {
+	resp, err := client.httpClient.Get(fmt.Sprintf("%s/api/v0/network/stats", client.baseUrl))
 	if err != nil {
 		return nil, err
 	}

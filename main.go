@@ -8,10 +8,16 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+
+	restclient "teamstaking.com/go-jormungandr-monitor/pkg"
 )
+
+var jormungandrClient restclient.Client
 
 func main() {
 	logrus.Info("Starting go-jormungandr-monitor...")
+
+	jormungandrClient = restclient.NewClient()
 
 	stakeCollector := NewStakeCollector()
 	stakeInfoCollector := NewStakeInfoCollector()

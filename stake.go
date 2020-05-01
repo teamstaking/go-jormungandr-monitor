@@ -8,8 +8,6 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
-
-	restclient "teamstaking.com/go-jormungandr-monitor/pkg"
 )
 
 type StakeCollector struct {
@@ -63,7 +61,7 @@ func (sc StakeCollector) Collect(ch chan<- prometheus.Metric) {
 	stakePoolId := os.Getenv("GJM_STAKE_POOL_ID")
 
 	if len(stakePoolId) > 0 {
-		stake, err := restclient.GetStake(stakePoolId)
+		stake, err := jormungandrClient.GetStake(stakePoolId)
 		if err != nil {
 			logrus.Error(fmt.Sprintf("Error getting stake: %s", err))
 			return

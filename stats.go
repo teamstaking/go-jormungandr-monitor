@@ -8,8 +8,6 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/sirupsen/logrus"
-
-	restclient "teamstaking.com/go-jormungandr-monitor/pkg"
 )
 
 type StatsCollector struct {
@@ -93,7 +91,7 @@ func (sc StatsCollector) Collect(ch chan<- prometheus.Metric) {
 	sc.BuildInfo.Reset()
 
 	// get stats info
-	stats, err := restclient.GetStats()
+	stats, err := jormungandrClient.GetStats()
 	if err != nil {
 		logrus.Error(fmt.Sprintf("Error getting stats info: %s", err))
 		sc.BuildInfo.WithLabelValues("Offline", "Offline").Set(0)

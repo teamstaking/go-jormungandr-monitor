@@ -10,8 +10,6 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
-
-	restclient "teamstaking.com/go-jormungandr-monitor/pkg"
 )
 
 type ConnectionsCollector struct {
@@ -68,7 +66,7 @@ func (cc ConnectionsCollector) getNetstats(ch chan<- prometheus.Metric) {
 
 	cc.Connections.Collect(ch)
 
-	connections, err := restclient.GetConnections()
+	connections, err := jormungandrClient.GetConnections()
 	if err != nil {
 		logrus.Error(fmt.Sprintf("Error getting connection info: %s", err))
 		return
