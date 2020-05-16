@@ -38,8 +38,17 @@ type Client struct {
 
 func NewClient() Client {
 	baseUrl := os.Getenv("GJM_BASE_REST_URL")
+	timeout := os.Getenv("GJM_REST_TIMEOUT_DURATION")
+	if timeout == "" {
+		timeout = "1s"
+	}
+	timeoutDuration, err := time.ParseDuration(timeout)
+	if err != nil {
+		panic(err)
+	}
+
 	httpClient := &http.Client{
-		Timeout: 1 * time.Second,
+		Timeout: timeoutDuration,
 	}
 
 	client := Client{
